@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
     countDown()
   });
   const scoreSpan = document.getElementById('score')
-  const submitButton = document.getElementById('btnReset')
+  const submitButton = document.getElementById('btnSubmit')
   const reset = document.getElementById('btnReset')
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
@@ -120,12 +120,12 @@ window.addEventListener('DOMContentLoaded', () => {
     
    }
 }
-   submitButton.addEventListener('click',calculateScore);
+   submitButton.addEventListener('click',() =>calculateScore());
 
    const resetPage = () =>{
     location.reload()
    }
-   reset.addEventListener('click',resetPage)
+   reset.addEventListener('click', () =>resetPage())
    
    
 
