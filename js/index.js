@@ -44,6 +44,16 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'Who is the leader of Australia',
+      o: ['Pig', 'Snake', 'Spider', 'kangaroo'],
+      a: 0,
+    },
+    {
+      q: 'Where have best coffee in Australia',
+      o: ['SYD', 'Perth', 'Melbourne', 'GoldCost'],
+      a: 2,
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -75,15 +85,42 @@ window.addEventListener('DOMContentLoaded', () => {
         radioElement = document.querySelector('#' + r);
 
         if (quizItem.a == i) {
-          //change background color of li element here
+          //change background color of li element here 
+          const listContainer = getElementById('quizBlock')
+          listContainer[li].style.backgroundColor = "black";
+          
         }
 
         if (radioElement.checked) {
           // code for task 1 goes here
+          quizItem.a == i
+          score++
+          
         }
       }
     });
   };
+   const submit = document.getElementById('btnSubmit')
+   submit.addEventListener('click',calculateScore)
+
+   const reset = document.getElementById('btnReset')
+   const resetPage = () =>{
+    location.reload()
+   }
+   reset.addEventListener('click',resetPage)
+  
+   setInterval(myFunction, 100000);
+
+   function myFunction() {
+   let d = new Date();
+   document.getElementById("time").innerHTML=
+   d.getHours() + ":" +
+   d.getMinutes() + ":" +
+   d.getSeconds();
+}
+
+   
+   
 
   // call the displayQuiz function
   displayQuiz();
