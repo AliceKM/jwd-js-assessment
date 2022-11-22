@@ -24,7 +24,11 @@ window.addEventListener('DOMContentLoaded', () => {
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
+    countDown()
   });
+  const scoreSpan = document.getElementById('score')
+  const submitButton = document.getElementById('btnReset')
+  const reset = document.getElementById('btnReset')
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
   // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
@@ -45,9 +49,9 @@ window.addEventListener('DOMContentLoaded', () => {
       a: 1,
     },
     {
-      q: 'Who is the leader of Australia',
+      q: 'What is the most danger animal in Australia',
       o: ['Pig', 'Snake', 'Spider', 'kangaroo'],
-      a: 0,
+      a: 2,
     },
     {
       q: 'Where have best coffee in Australia',
@@ -84,41 +88,44 @@ window.addEventListener('DOMContentLoaded', () => {
         liElement = document.querySelector('#' + li);
         radioElement = document.querySelector('#' + r);
 
-        if (quizItem.a == i) {
-          //change background color of li element here 
-          const listContainer = getElementById('quizBlock')
-          listContainer[li].style.backgroundColor = "black";
-          
-        }
-
         if (radioElement.checked) {
           // code for task 1 goes here
-          quizItem.a == i
-          score++
-          
+          if(quizItem.a == i){
+            score++
+            liElement.style.backgroundColor = 'green'
+          }else{
+            liElement.style.backgroundColor = 'red'
+          } 
         }
       }
     });
+     
+    scoreSpan.innerHTML = `your score is: ${score}/5`
   };
-   const submit = document.getElementById('btnSubmit')
-   submit.addEventListener('click',calculateScore)
+ 
+   
+  
+   const countDown =()=>{
+    let seconds = 60;
+    let timer = setInterval(myTimer, 1000)
+    function myTimer() {
+    document.getElementById('time').innerHTML = `${seconds}Seconds`
+    seconds--
+    if (seconds === -1){
+      clearInterval(timer)
+      calculateScore()
+        alert("time is up!!")
+       
+    }
+    
+   }
+}
+   submitButton.addEventListener('click',calculateScore);
 
-   const reset = document.getElementById('btnReset')
    const resetPage = () =>{
     location.reload()
    }
    reset.addEventListener('click',resetPage)
-  
-   setInterval(myFunction, 100000);
-
-   function myFunction() {
-   let d = new Date();
-   document.getElementById("time").innerHTML=
-   d.getHours() + ":" +
-   d.getMinutes() + ":" +
-   d.getSeconds();
-}
-
    
    
 
